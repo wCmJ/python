@@ -1,0 +1,25 @@
+Iterable and Iterator:
+    One:  Data structure can be used in for:  1.list, tuple, dict, set, str. 2. generator, generator function
+          All this type are called Iterable.
+          we use function isinstance() to judge a type is Iterable or not.
+            For example:
+            from collections import Iterable
+            isinstance([],Iterable)
+    Two:  Iterator: some object that can be invoked by next() and return next value continuously.
+
+    Summary:  Iterable and Iterator are different.
+              list, dict, str are not Iterator.
+              generator and generator function with yield are Iterator
+              iter() converts (list, dict and str) to Iterator.
+              isinstance(iter("abc"),Iterator) => True
+              ------------------------------------------------------
+              For in python uses Iterator to accomplish:
+              for x in [1,2,3,4,5]:
+                  pass
+              is equal to:
+              it = iter([1,2,3,4,5])
+              while True:
+                  try:
+                      x = next(it)
+                  except StopIteration:
+                      break
