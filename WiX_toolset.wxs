@@ -1,0 +1,56 @@
+Directives: 1.  candle.exe yourname.wxs
+            2.  light.exe yourname.wixobj
+Result: you will get yourname.msi
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Product  Id="GUID" 
+              Name="yourSoftName"
+              Language="The Microsoft Software Development Kit(SDK) includes Language and Codepage"
+              Codepage=""
+              Version="major.minor.build"
+              Manufacturer="yourCompany"
+              UpgradeCode="GUID"
+              >
+      
+        <Package  Id="*" //asterisk represents WiX will autogenerate a GUID
+                  InstallScope="perMachine/perUser" 
+                  //perUser declares the package is a per-user installation and does not require elevated privileges to install, 
+                            works with limited
+                  //perMachine declares the package is a per-machine installation and requires elevated privileges to install,
+                                need to set the ALLUSERS property to 1.
+                  
+                  
+                  InstallPrivileges="elevated/limited"
+                  Keywords=""
+                  Description=""
+                  Comments=""
+                  InstallerVersion=""
+                  Language=""
+                  Compressed="yes/no"
+                  SummaryCodepage=""
+                  />
+          <Directory Id="TARGETDIR" Name="SourceDir">
+          //TARGETDIR = root directory that contains the source cabinet file or the source file tree of the installation package.
+            same to SourceDir
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </Product>
+</Wix>
