@@ -1,0 +1,27 @@
+method:
+str1 = "xiaoxie"  str2="DAXIE"  str3='I\tlove\tu'
+1. capitalize(): make the first character capital.
+    str1.capitalize()  ->  'Xiaoxie'
+    
+2. casefold(): change all characters to lowercase
+    str2.casefold()  ->  'daxie'
+    
+3. center(width): make the string center
+    str2.center(20)  ->  '       DAXIE        '
+    
+4. count(sub[,start[,end]]): return the count of sub in string. [] means optional.
+    str1.count('i')  -> 2
+    
+5. encode(encoding='utf-8',errors='strict') 
+    
+
+6. endswith(sub[,start[,end]]): return whether string ends with sub.
+    str1.endswith('xi')  ->  False
+    
+7. expandtabs([tabsize=8]): replace \t with space.
+    str3.expandtabs()  ->  'I       love    u'
+    
+8. find(sub[,start[,end]]): find sub in string. if yes, return the index of first match, if no, return -1.
+    str1.find('mt') ->  -1
+    
+9.
