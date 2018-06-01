@@ -23,3 +23,15 @@ Iterable and Iterator:
                       x = next(it)
                   except StopIteration:
                       break
+------------------------------------------------------------------------------------------------------
+import sys: means sys points to the module sys, we can reference methods in sys. 
+            sys.argv stores all arguments of command lines with list. and the first is the name of this file.
+                for example:    in second.py, print(sys.argv[0])  ->  second.py
+                
+if __name__ == '__main__': when file is invoked not imported, return true. 
+
+__name__, __author__, __doc__,... : special variable.
+_xxx, __xxx: private
+xxx: public
+
+
