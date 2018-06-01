@@ -1,0 +1,12 @@
+li=[1,2,3,4.1,'abc']
+
+li.append(5)
+
+li.remove('abc')
+
+del li[index]
+
+li.pop() / li.pop(index)
+
+slice:
+
