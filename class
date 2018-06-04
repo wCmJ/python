@@ -1,0 +1,134 @@
+1.from types import MethodType
+  MethodType(method,class object)
+  
+explain:
+    bind method to instance of class, only this instance owns method.
+      
+2.class.method=methodDefined
+
+explain:
+    bind method to class, all instances have this method.
+      
+3.__slots__ = ('a','b',....)
+
+explain:
+    restrict the propertys of class, can only have a,b,... of ()
+    warning: this __slots__ does not affect child class.
+    if child class has __slots__ too, it will take __slots__ of parent too.
+    
+4.class Student(object):
+      name = 'Student'    
+  >>> s = Student() # 创建实例s
+  >>> print(s.name) # 打印name属性，因为实例并没有name属性，所以会继续查找class的name属性
+      Student
+  >>> print(Student.name) # 打印类的name属性
+      Student
+  >>> s.name = 'Michael' # 给实例绑定name属性
+  >>> print(s.name) # 由于实例属性优先级比类属性高，因此，它会屏蔽掉类的name属性
+    Michael
+  >>> print(Student.name) # 但是类属性并未消失，用Student.name仍然可以访问
+    Student
+  >>> del s.name # 如果删除实例的name属性
+  >>> print(s.name) # 再次调用s.name，由于实例的name属性没有找到，类的name属性就显示出来了
+    Student
+    
+explain:
+    property of class and property of instance of class are different and separate.
+    
+5.@property and @name.setter
+  class Screen(object):
+      @property 
+      def width(self):
+          return self._width
+      @width.setter
+      def width(self,value):
+          if not isinstance(value,(int,float)):
+              raise ValueError('width must be number')
+          self._width=value
+          
+      @property
+      def height(self):
+          return self._height
+      @height.setter
+      def height(self,value):
+          if not isinstance(value,(int,float)):
+              raise ValueError('height must be number')
+          self._height=height
+      @property
+      def resolution(self):
+          return self._width*self._height
+          
+explain:
+    @property is getter, and it takes another property setter with format of name.setter
+    
+6.multiple inheritance          
+          
+          
+7.MixIn 
+  network service class:TCPServer, UDPServer
+  multiple process and multiple thread:ForkingMixIn, ThreadingMixIn
+  
+  multiple process TCP server:
+  class MyTCPServer(TCPServer, ForkingMixIn):
+      pass
+  
+  multiple threads UDP server:
+  class MyUDPServer(UDPServer, ThreadingMixIn):
+      pass
+          
+          
+8.__str__ and __repr__
+  class s(object):
+      pass
+  s1=s()
+  print(s1) will invoke print(s1.__str__())
+  s1 will invoke s1.__repr__()
+
+  __iter__
+  class Fib(object):
+      def __init__(self):
+          self.a, self.b=0,1
+          
+      def __iter(self):
+          return self
+          
+      def __next__(self):
+          self.a, self.b=self.b,self.a+self.b
+          if self.a>100000:
+              raise StopIteration()
+          return self.a
+          
+  for n in Fib():
+      print(n)
+  output:
+  1
+  1
+  2
+  3
+  ....
+  46368
+  75025
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
