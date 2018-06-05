@@ -109,18 +109,145 @@ explain:
   46368
   75025
 
-
-
-
-
-
-
-
-
-
-
-
-
+  __getitem__
+  make instance can be used like list.
+  class Fib(object):
+      def __getitem__(self,n):
+          a,b=1,1
+          for x in range(n):
+              a,,b=b,a+b
+          return a
+  f=Fib()
+  f[0]  get 1
+  f[1]  get 1
+  f[2]  get 2
+  f[3]  get 3
+  f[10] get 89
+  for slice
+  class Fib(object):
+      def __getitem__(self,n):
+          if isinstance(n,int):
+              a,b=1,1
+              for x in range(n):
+                  a,b=b,a+b
+              return a
+          if isinstance(n,slice):
+              start=n.start
+              stop=n.stop
+              if start is None:
+                  start=0
+              a,b=1,1
+              L=[]
+              for x in range(stop):
+                  if x>=start:
+                      L.append(a)
+                  a,b=b,a+b
+              return L
+              
+9.enum
+  from enum import Enum
+  Month=Enum('M',('Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'))
+  for name,member in Month.__members__.items():
+      print(name,'=>',member,','member.value)
+  Jan => M.Jan , 1
+  Feb => M.Feb , 2
+  Mar => M.Mar , 3
+  Apr => M.Apr , 4
+  May => M.May , 5
+  Jun => M.Jun , 6
+  Jul => M.Jul , 7
+  Aug => M.Aug , 8
+  Sep => M.Sep , 9
+  Oct => M.Oct , 10
+  Nov => M.Nov , 11
+  Dec => M.Dec , 12    
+  
+  from enum import Enum, unique
+  @unique
+  class Weekday(Enum):
+      Sun = 0
+      Mon = 1
+      Tue = 2
+      Wed = 3
+      Thu = 4
+      Fri = 5
+      Sat = 6
+      
+  Weekday(0)  =>  Weekday.Sun
+  Weekday(1)  =>  Weekday.Mon
+  ...
+  Weekday(6)  =>  Weekday.Sat
+           
+  name: Sun, Mon, Tue,...
+  member: Weekday.Sun, Weekday.Mon,...
+  value: Weekday.Sun.value(0),.....
+              
+10.metaclass
+  class Field(object):
+      def __init__(self,name,column_type):
+          self.name=name
+          self.column_type=column_type
+      def __str__(self):
+          return '<%s:%s>' % (self.__class__.__name__,self.name)
+      
+  class StringField(Field):
+      def __init__(self,name):
+          super(StringField,self).__init__(name,'varchar(100)')
+          
+  class IntergerField(Field):
+      def __init__(self,name):
+          super(IntergerField,self).__init__(name,'bigint')
+  
+  class ModelMetaclass(type):        
+      def __new__(cls,name,bases,attrs):
+          if name=='Model':
+              return type.__new__(cls,name,bases,attrs)
+          print('Found model: %s' % name)
+          mappings=dict()
+          for k,v in attrs.items():
+              if isinstance(v,Field):
+                  print('Found mapping: %s ==> %s' % (k,v))
+                  mappings[k]=v
+          for k in mappings.keys():
+              attrs.pop(k)
+          attrs['__mappings__']=mappings
+          attrs['__table--']=name
+          return type.__new__(cls,name,bases,attrs)
+    
+    class Model(dict,metaclass=ModelMetaclass):
+        def __init__(self,**kw):
+            super(Model,self).__init__(**kw)
+            
+        def __getattr__(self,key):
+            try:
+                return self[key]
+            except KeyError:
+                raise AttributeError(r"'Model' object has no attribute '%s'" % key)
+        
+        def __setattr__(self,key,value):
+            self[key]=value
+        
+        def save(self):
+            fields=[]
+            params=[]
+            args=[]
+            for k,v in self.__mappings__.items():
+                fields.append(v.name)
+                params.append('?')
+                args.append(getarrt(self,k,None))
+            sql='insert into %s (%s) values (%s)' % (self.__table__, ','.join(fields), ','.join(params))
+            print('SQL: %s' % sql)
+            print('ARGS: %s' % str(args))
+        
+    u = User(id=12345, name='Michael', email='test@orm.org', password='my-pwd')
+    u.save()    
+        
+        
+                
+                
+                
+                
+  
 
 
 
