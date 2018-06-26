@@ -73,12 +73,17 @@ b'\xe4\xb8\xad\xff'.decode('utf-8', errors='ignore')    -->   '中'
 'Hello, {0}, 成绩提升了 {1:1.1f}%'.format('小明', 17.125)
 
 
+dict:
+d={'a':1,'b':2}
+1.'key' in d
+2.d.get('key')
+3.d.get('key',-1)
 
+d.pop('key')
 
-
-
-
-
+Hash: get location by key in dictionary.
+          
+key type: string, int.
 
 
 
