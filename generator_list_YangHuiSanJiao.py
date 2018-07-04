@@ -42,3 +42,16 @@ def main():
     
 if __name__ == "__main__":
     main()
+
+#list are mutable. when passed to function, actually the reference was passed.
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
