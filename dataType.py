@@ -65,7 +65,26 @@ while True:
         break
 '''        
         
-    
+'''
+Iterator map(function(oneParameter), Iterable)
+function will act on every element in Iterable, and return as Iterator.
+e.g.
+list(map(lambda x:x*x, [1,2,3,4,5,6,7,8,9]))
+list(map(str,[1,2,3,4,5,6,7,8,9]))
+
+reduce(function(firstParameter, secondParameter), list)
+e.g.
+from functools import reduce
+reduce(lambda x,y:x*10+y, [1,3,5,7,9])
+
+Iterator filter(function(oneParameter), Iterable)
+e.g.
+list(filter(lambda x:x%2==0, [1,2,3,4,5,6]))
+
+sorted(parameter, key=function, reverse=True/False)
+sorted(['bob', 'about', 'Zoo', 'Credit'], key=str.lower)
+
+'''
     
     
     
