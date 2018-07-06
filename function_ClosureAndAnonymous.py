@@ -46,13 +46,29 @@ def f(x):
 #   lambda means anonymous function.
 #   lambda has only one expression
 
+def _not_divisible(n):
+    return lambda x: x % n > 0
+n = 2
+it = [1,2,3,4,5]
+it = filter(_not_divisible(n), it)
+#   _not_divisible(n) return lambda x: x % n > 0, still be a function.
 
-
-
-
-
-
-
+#   function has one attribute named __name__.
+def log(func):
+    def wrapper(*args, **kw):
+        print('call %s():' % func.__name__)
+        return func(*args, **kw)
+    return wrapper
+@log
+def now(t):
+    print(t)
+    print('2018-7-6')    
+now(t) # t is not defined, but still work
+''' result:
+    call now():
+    <function build.<locals>.<lambda> at 0x000002525D658AE8>
+    2018-7-6
+'''
 
 
 
