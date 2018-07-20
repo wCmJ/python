@@ -89,14 +89,50 @@ class Student(object):
         self.name = name
         self.gender = Gender
 
+#   custom Metaclasses
+class Foo():
+    pass
 
+f = Foo()
+#   the expression Foo() creates a new instance of class Foo.
+#   when the interpreter encounters Foo()
+#   the __call__() method of Foo's parent class is called
+#   the __call__() method in turn invokes the following
+#   __new__()
+#   __init__()
+#   if Foo does not define __new__() and __init__(), default methods are inherited from Foo's ancestry
+#   if Foo does define these methods, they override those from the ancestry, which allows for customized behavior when instantiating Foo
 
+class ListMetaclass(type):
+    def __new__(cls, name, bases, attrs):
+        attrs['add'] = lambda self, value: self.append(value)
+        return type.__new__(cls, name, bases, attrs)
+class MyList(list, metaclass=ListMetaclass):
+    pass
+L=MyList()
+L.add(1)
+#   cls:    当前准备创建的类的对象
+#   name:   类的名字
+#   bases:  类继承的父类的集合
+#   attrs:  类的方法集合
 
-
-
-
-
-
+#   ORM:    object relational mapping   对象关系映射
+class User(Model):
+    id = IntegerField('id')
+    name = StringField('username')
+    email = StringField('email')
+    password = StringField('password')
+u = User(id = 12345, name = 'Michael', email = 'test@orm.org', password='my-pwd')
+u.save()
+class Field(object):
+    def __init__(self, name, column_type):
+        self.name = name
+        self.column_type = column_type
+    def __str__(self):
+        return '<%s:%s>' % (self.__class__.__name__, self.name)
+class StringField(Field):
+    def __init__(self, name):
+        super(StringField, self).__init__(name, 'varchar(100)')
 
 
 
