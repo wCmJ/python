@@ -86,7 +86,9 @@ Hash: get location by key in dictionary.
 key type: string, int.
 
 
-
+#write file
+dbfile = open('location and filename','w')
+print('')
 
 
 
