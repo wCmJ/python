@@ -92,7 +92,17 @@ print('')
 
 
 
+GIL: global interpreter lock
+every thread must get GIL before executing codes.
+and interpreter will release GIL when 100 bytecode have been executed.
+so threads run one by one in python.
+multiple threads's concurrent is just a dream in python.
 
+async IO: operator system provides async IO, we can use single process single thread model to execute multi task.
+this new model also is called event drive model.
+
+multiprocessing supports multi processes, managers submodule support distribute multi processes to multi machines.
+service process --> network conmunicate -->  other processes
 
 
 
