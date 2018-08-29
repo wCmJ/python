@@ -104,23 +104,53 @@ this new model also is called event drive model.
 multiprocessing supports multi processes, managers submodule support distribute multi processes to multi machines.
 service process --> network conmunicate -->  other processes
 
+hash: according to key to get location
+dict: {key1:value1,...}          
+set: {key1,key2,...}
+key: key is const object, str, int,...  not all set can be key
 
+one .py file is a module.
+mycompany (package): every package has one __init__.py file. otherwise this package will be common directory not a package. 
+├─ __init__.py: this file's name of module is mycompany.
+├─ abc.py
+└─ xyz.py
 
+mycompany
+ ├─ web
+ │  ├─ __init__.py
+ │  ├─ utils.py
+ │  └─ www.py
+ ├─ __init__.py
+ ├─ abc.py
+ └─ xyz.py
 
+function parameters:
+1.location parameters:
+          
+2.default parameters:
+    def func(a,b=1):
+        pass
+    func(1)/ func(1,2)/ func(1,b=2)
+    
+    def appe(L=[]):
+        L.append(1)
+    L points to a const location, and it can be changed.
+    
+3.changable parameters:
+    def cp(*numbers): numbers convert to a tuple
+        pass
+    cp(1,2,3,4)/ cp()
+    L=[1,2,3]
+    cp(*L)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+4.keyword parameters:
+    def person(name, age, **kw): kw converts to a dict
+        pass
+    person('Bob', 35, city='Beijing')/ person('Adam', 45, gender='M', job='Engineer')        
+    extra = {'city': 'Beijing', 'job': 'Engineer'}
+    person('Jack', 24, city=extra['city'], job=extra['job'])
+    extra = {'city': 'Beijing', 'job': 'Engineer'}
+    person('Jack', 24, **extra)
 
 
 
