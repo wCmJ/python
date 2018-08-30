@@ -152,10 +152,15 @@ function parameters:
     extra = {'city': 'Beijing', 'job': 'Engineer'}
     person('Jack', 24, **extra)
 
-
-
-
-
+5.name keyword parameters:
+    limit keyword parameters with key
+    def person(name, age, *, city, job): only receive parameters city and job as key.
+        print(name,age,city,job)
+    person('Jack', 24, city='Beijing', job='Engineer') // must specify city and job when invoking
+    def person(name, age, *args, city, job):
+        print(name,age,city,job)
+        
+location parameters->default parameters->changable parameters->name keyword parameters->keyword parameters
 
 
 
