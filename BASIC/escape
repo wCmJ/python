@@ -1,1 +1,79 @@
+\a \b \f \n \r \t \v \u \x
+
+
+testStr = 'c:\abc'
+print(st)
+print(len(st))
+c:bc
+5
+
+testStr = 'c:\bbc'
+print(st)
+print(len(st))
+cbc
+5
+
+st = 'c:\cbc'
+print(st)
+print(len(st))
+c:\cbc
+6
+
+st = 'c:\fbc'
+print(st)
+print(len(st))
+c:bc
+5
+
+st = 'c:\nbc'
+print(st)
+print(len(st))
+c:
+bc
+5
+
+st = 'c:\rbc'
+print(st)
+print(len(st))
+bc
+5
+
+st = 'c:\tbc'
+print(st)
+print(len(st))
+c:	bc
+5
+
+st = 'c:\vbc'
+print(st)
+print(len(st))
+c:bc
+5
+
+st = 'c:\ubc'
+print(st)
+print(len(st))
+    st = 'c:\ubc'
+        ^
+SyntaxError: (unicode error) 'unicodeescape' codec can't decode bytes in position 2-5: truncated \uXXXX escape
+
+st = 'c:\xbc'
+print(st)
+print(len(st))
+c:¼
+3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
