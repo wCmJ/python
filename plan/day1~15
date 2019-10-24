@@ -1,0 +1,28 @@
+
+
+
+
+
+
+
+
+
+
+#day9
+@property
+
+@variable.setter
+
+__slots__ = ('_name', '_age')
+
+@staticmethod
+
+class Clock(object):
+    @classmethod
+    def now(cls):
+        return cls(para1, para2)
+    
+if __name__ == '__main__':
+    clock = Clock.now()
+    
+
